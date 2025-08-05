@@ -1,0 +1,26 @@
+<%- include('partials/header', { title: title, user: user }) %>
+
+<h2>➕ <%= title %></h2>
+<form method="POST" action="<%= user && user.role==='business_owner' ? '/admin/users/add' : '/register' %>">
+  <label for="username">Username</label>
+  <input id="username" name="username" type="text" required>
+
+  <label for="password">Password</label>
+  <input id="password" name="password" type="password" required>
+
+  <label for="role">Role</label>
+  <select id="role" name="role" required>
+    <option value="">Select Role</option>
+    <option value="tourist">Tourist</option>
+    <option value="business_owner">Business Owner</option>
+    <option value="city_planner">City Planner</option>
+  </select>
+
+  <button type="submit" class="btn">Submit</button>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+</form>
+
+<%- include('partials/footer') %>

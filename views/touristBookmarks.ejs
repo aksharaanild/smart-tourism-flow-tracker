@@ -1,0 +1,17 @@
+<%- include('partials/header',{title,user}) %>
+
+<h2>My Bookmarks</h2>
+
+<% if (bookmarks.length === 0) { %>
+  <p>You haven’t saved any locations yet.</p>
+<% } else { %>
+  <ul>
+    <% bookmarks.forEach(b => { %>
+      <li><%= b.location %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<p><a href="/tourist/dashboard">← Back to Dashboard</a></p>
+
+<%- include('partials/footer') %>

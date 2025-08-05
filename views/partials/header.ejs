@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title || 'Smart Tourism Flow Tracker' %></title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div class="site-wrapper">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">Smart Tourism<br/>Flow Tracker</a>
+      <nav class="site-nav">
+        <ul class="main-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+        <ul class="auth-links">
+          <% if (user) { %>
+            <li><a href="/logout">Logout (<%= user.username %>)</a></li>
+          <% } else { %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-content container">
+    <!-- page‐specific content will be injected here -->

@@ -1,0 +1,27 @@
+<%- include('partials/header', { title: 'Home', user: user }) %>
+
+    <div class="home-container">
+    <h1>Smart Tourism Flow Tracker</h1>
+    <img src="/images/banner.jpg" style="width: 100%; border-radius: 10px;" alt="Tourism Banner">
+     <p>Monitor crowd levels, get recommendations, and help plan smarter tourism.</p>
+    
+    <% if (!user) { %>
+    <!-- Not logged in: show Login & Register -->
+    <div class="auth-links">
+      <a href="/login" class="btn">Login</a>
+      <a href="/register" class="btn">Register</a>
+    </div>
+    <% } else { %>
+    <!-- Logged in: link to your role‐specific dashboard -->
+    <p>Hello, <strong><%= user.username %></strong>!</p>
+        <% if (user.role === 'business_owner') { %>
+            <a href="/admin/dashboard" class="btn">Go to Admin Dashboard</a>   
+        <% } else if (user.role === 'city_planner') { %>
+            <a href="/planner/dashboard" class="btn">Go to Planner Dashboard</a>
+        <% } else { %>
+        <a href="/tourist/dashboard" class="btn">Go to Tourist Dashboard</a>
+        <% }} %>
+        </div>
+<%- include('partials/footer') %>
+
+

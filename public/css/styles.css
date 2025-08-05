@@ -1,0 +1,483 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e6f7ff, #ffffff);
+  margin: 0;
+  padding: 20px;
+  padding: 0;
+  height: 100%;
+}
+
+.home-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  text-align: center;
+}
+.home-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.btn {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: #007acc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.btn.secondary {
+  background: #555;
+}
+.auth-links {
+  margin-top: 2rem;
+}
+
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  background-color: #007acc;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+/* header wrapper */
+.site-header {
+  background-color: #004a99;
+  padding: 0.75em 0;
+}
+
+/* flex layout: logo + nav */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo styling */
+.logo {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+/* nav container sits to the right */
+.site-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+/* common nav list */
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+/* main menu links */
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25em 0.5em;
+}
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* auth links (login/register/logout) */
+.auth-links a {
+  color: #ffd700; /* golden to stand out */
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+/* ensure container centers content */
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;     /* fill the viewport */
+}
+
+
+/* Content */
+.site-content {
+  flex: 1;   
+  padding: 2rem 0;
+}
+
+/* Footer */
+.site-footer {
+  background: #f5f5f5;
+  color: #444;
+  padding: 1em 0;            /* top/bottom padding */
+  margin-top: 2em;  
+  text-align: center;         /* space from main content */
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;   /* center the text */
+  align-items: center;
+}
+
+.footer-inner p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+
+/* Active link styling */
+.main-nav a.active {
+  text-decoration: underline;
+}
+
+/* Centered form styling */
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+.form-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+.form-card h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  background: #007acc;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #005fa3;
+}
+.error {
+  margin-top: 1rem;
+  color: #c00;
+  text-align: center;
+}
+
+/* Register page styles */
+.register-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .register-title {
+    text-align: center;
+    color: #0d6efd;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  .btn-register {
+    width: 100%;
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .btn-register:hover {
+    background-color: #0b5ed7;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+/* Admin Dashboard styles */
+/* styles.css */
+.action‑bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.btn.secondary {
+  background: #555;
+  color: #fff;
+}
+ .table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+  }
+  .table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  .btn {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .btn-primary { background-color: #0d6efd; }
+  .btn-secondary { background-color: #6c757d; }
+  .btn-danger { background-color: #dc3545; }
+  .btn-sm { font-size: 0.8rem; }
+
+/**touristDashboard styles**/
+.alert { 
+  padding: 1em; 
+  margin: 1em 0; 
+  border-radius: 0.3em; 
+  background: #ffe5e5; 
+  color: #900;
+}
+
+.interest-buttons form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.interest-buttons button {
+  background: #17a2b8;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.interest-buttons button:hover {
+  background: #117a8b;
+}
+
+
+/**overcrowded alert**/
+.alert-banner {
+  background-color: #ffe6e6;      
+  border: 1px solid #ff4d4d;      
+  color: #800000;                 
+  padding: 1em 1.5em;
+  margin-bottom: 1.5em;
+  border-radius: 6px;
+  font-family: sans-serif;
+  font-size: 1rem;
+  position: relative;
+}
+
+/* bold “Warning:” label */
+.alert-banner strong {
+  font-size: 1.1em;
+}
+
+/* close “×” button */
+.alert-banner .close-btn {
+  position: absolute;
+  top: 0.25em;
+  right: 0.5em;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  line-height: 1;
+  cursor: pointer;
+  color: #800000;
+}
+
+/* make the container narrower and center it */
+.contact-card {
+  background: #fff;
+  max-width: 500px;
+  margin: 2rem auto;       /* center & give top/bottom space */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* space out the fields */
+.contact-card .form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* labels */
+.contact-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* inputs and textarea */
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline: none;
+  border-color: #007BFF;
+}
+
+/* button */
+.contact-card .btn {
+  display: inline-block;
+  background: #007BFF;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.contact-card .btn:hover {
+  background: #0056b3;
+}
+
+/* success message */
+.success-msg {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/**recommentation**/
+.recommend‑form {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.recommend-list {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+.recommend-list li {
+  background: #eef6ff;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/**bookmarks**/
+.btn-small {
+  padding: 0.25em 0.5em;
+  font-size: 0.9rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-small:hover {
+  background: #0056b3;
+}
+
+

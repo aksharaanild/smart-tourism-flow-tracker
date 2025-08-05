@@ -1,0 +1,27 @@
+<%- include('partials/header', { title, user }) %>
+
+<h2>👥 Manage Users</h2>
+<a href="/admin/dashboard" class="btn secondary">← Back to Dashboard</a>
+<a href="/admin/users/add" class="btn">+ Add New User</a>
+
+<table>
+  <thead>
+    <tr><th>Username</th><th>Role</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.username %></td>
+        <td><%= u.role %></td>
+        <td>
+          <a href="/admin/users/<%= u.id %>/edit" class="btn btn-sm">Edit</a>
+          <form method="POST" action="/admin/users/<%= u.id %>/delete" style="display:inline">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('partials/header', { title: title, user: user }) %>
+
+<h2>👥 User Management</h2>
+<a href="/admin/adminDashboard">← Back to Dashboard</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr><th>ID</th><th>Username</th><th>Role</th></tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.role %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+  <a href="/admin/users/add">+ Add New User</a>
+
+</table>
+
+<%- include('partials/footer') %>

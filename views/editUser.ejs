@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: title, user: user }) %>
+
+<h2>✏️ Edit User: <%= editUser.username %></h2>
+<form method="POST" action="/admin/users/<%= editUser.id %>/edit">
+  <label for="role">Role</label>
+  <select id="role" name="role" required>
+    <% roles.forEach(r => { %>
+      <option value="<%= r %>" <%= r === editUser.role ? 'selected' : '' %>>
+        <%= r.replace('_',' ').replace(/\b\w/g, c=>c.toUpperCase()) %>
+      </option>
+    <% }) %>
+  </select>
+
+  <button type="submit" class="btn">Save</button>
+</form>
+<a href="/admin/users" class="btn secondary">← Back to User List</a>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,18 @@
+
+<h2>📍 Check Crowd Status at a Tourist Spot</h2>
+
+<form method="POST" action="/tourist/check-spot">
+  <label for="location">Select Location:</label>
+  <select name="location_id" required>
+    <% locations.forEach(loc => { %>
+      <option value="<%= loc.id %>"><%= loc.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Check</button>
+</form>
+
+<% if (status && locationName) { %>
+  <h3>Status for "<%= locationName %>":</h3>
+  <p style="font-size: 1.5em;"><strong><%= status %></strong></p>
+<% } %>
+<p><a href="/tourist/dashboard">← Back to Dashboard</a></p>

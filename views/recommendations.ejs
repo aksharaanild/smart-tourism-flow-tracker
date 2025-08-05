@@ -1,0 +1,43 @@
+<%- include('partials/header', { title, user }) %>
+
+<h2>Recommended Places Based on Your Interest</h2>
+
+<% if (error) { %>
+  <p class="error-msg"><%= error %></p>
+<% } %>
+
+<form method="POST" action="/tourist/recommendations" class="recommend‑form">
+  <label for="interest">Select Your Interest:</label>
+  <select name="interest" id="interest" required>
+    <option value="">— choose —</option>
+    <option value="nature">Nature</option>
+    <option value="adventure">Adventure</option>
+    <option value="food">Food</option>
+    <option value="Museum">Museum</option>
+    <option value="relaxation">Relaxation</option>
+    <option value="History">History</option>
+    <option value="historical">Historical</option>
+  </select>
+  <button type="submit" class="btn">Get Recommendations</button>
+</form>
+
+<% if (recommendations) { %>
+  <% if (recommendations.length > 0) { %>
+    <h3>Top Spots:</h3>
+    <ul class="recommend-list">
+      <% recommendations.forEach(place => { %>
+        <li>
+          <strong><%= place.name %></strong>
+          (<%= place.region %>) — 
+          Visitors: <%= place.total_visitors %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No popular places found for that interest yet.</p>
+  <% } %>
+<% } %>
+
+<p><a href="/tourist/dashboard">← Back to Dashboard</a></p>
+
+<%- include('partials/footer') %>

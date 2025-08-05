@@ -1,0 +1,21 @@
+<%- include('partials/header',{ title, user }) %>
+<h2>Add New Entry</h2>
+<form method="POST" action="/admin/add">
+  <label>Location</label>
+  <select name="location_id" required>
+    <option value="">--Select--</option>
+    <% locations.forEach(l=>{ %>
+      <option value="<%=l.id%>"><%=l.name%></option>
+    <% }) %>
+  </select>
+
+  <label>Date/Time</label>
+  <input type="datetime-local" name="date_time" required>
+
+  <label>Visitors</label>
+  <input type="number" name="visitors" min="0" required>
+
+  <button type="submit" class="btn">Add</button>
+  <% if(error){ %><p class="error"><%=error%></p><% } %>
+</form>
+<%- include('partials/footer') %>

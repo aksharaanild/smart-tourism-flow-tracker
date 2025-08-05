@@ -1,0 +1,87 @@
+<%- include('partials/header',{title,user}) %>
+
+<% if (overcrowded && overcrowded.length) { %>
+  <div class="alert-banner" id="overcrowdAlert">
+    <button class="close-btn" onclick="document.getElementById('overcrowdAlert').style.display='none'">&times;</button>
+    <strong>Warning:</strong> The following spot(s) are overcrowded right now:
+    <% overcrowded.forEach((r, i) => { %>
+      <%= r.location %> (<%= r.visitors %> visitors)<%= i < overcrowded.length - 1 ? ',' : '' %>
+    <% }) %>
+  </div>
+<% } %>
+
+
+<h2>Welcome, <%= user.username %></h2>
+
+<h3>Live Crowd Levels</h3>
+<table>
+  <thead>
+    <tr><th>Location</th><th>Date/Time</th><th>Visitors</th></tr>
+  </thead>
+  <tbody>
+    <% latest.forEach(r => { %>
+      <tr>
+        <td><%= r.location %></td>
+        <td><%= new Date(r.date_time).toLocaleString() %></td>
+        <td><%= r.visitors %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h3>Nearby Attractions</h3>
+<div id="map" style="width:100%;height:400px;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= locals.GOOGLE_MAPS_KEY %>&callback=initMap" async></script>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: -41.29, lng: 174.78 },
+      zoom: 12
+    });
+    const pois = <%- JSON.stringify(pois) %>;
+    pois.forEach(p => {
+      new google.maps.Marker({
+        map,
+        position: { lat: +p.latitude, lng: +p.longitude },
+        title: p.name
+      });
+    });
+  }
+</script>
+
+
+<h3>Recommended (Least Crowded in 24h)</h3>
+
+<hr>
+
+<section class="interest-buttons">
+  <h3>Or pick an interest:</h3>
+  <form method="POST" action="/tourist/recommendations">
+    <button type="submit" name="interest" value="nature">Interest</button>
+
+  </form>
+</section>
+
+<ul>
+  <% if (recommendations.length) { %>
+    <% recommendations.forEach(r => { %>
+      <li>
+        <strong><%= r.location %></strong>
+        (avg <%= Math.round(r.avg_visitors) %> visitors)
+        <form action="/tourist/bookmark" method="POST" style="display:inline">
+          <input type="hidden" name="location_id" value="<%= r.location_id %>">
+          <button class="btn-small">★</button>
+        </form>
+      </li>
+    <% }) %>
+  <% } else { %>
+    <li>No recommendations available.</li>
+  <% } %>
+</ul>
+
+<p>
+  <a href="/tourist/map">View on Map</a> |
+  <a href="/tourist/bookmarks">My Bookmarks</a>
+</p>
+
+<%- include('partials/footer') %>

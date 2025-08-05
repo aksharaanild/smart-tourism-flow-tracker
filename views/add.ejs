@@ -1,0 +1,26 @@
+<%- include('partials/header', { title: title, user: user }) %>
+
+<h2>➕ Add Flow Entry</h2>
+<form method="POST" action="/admin/add">
+  <label for="location">Location</label>
+  <select id="location" name="location_id" required>
+    <option value="">-- Select Location --</option>
+    <% locations.forEach(loc => { %>
+      <option value="<%= loc.id %>"><%= loc.name %></option>
+    <% }) %>
+  </select>
+
+  <label for="date_time">Date/Time</label>
+  <input type="datetime-local" id="date_time" name="date_time" required>
+
+  <label for="visitors">Visitors</label>
+  <input type="number" id="visitors" name="visitors" min="0" required>
+
+  <button type="submit" class="btn">Add Entry</button>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+</form>
+
+<%- include('partials/footer') %>

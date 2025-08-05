@@ -1,0 +1,29 @@
+<%- include('partials/header',{ title, user }) %>
+<h2>Edit Entry</h2>
+<form method="POST" action="/admin/edit/<%=entry.id%>">
+  <label>Location</label>
+  <select name="location_id" required>
+    <% locations.forEach(l=>{ %>
+      <option value="<%=l.id%>" <%= entry.location_id===l.id?'selected':'' %>>
+        <%=l.name%>
+      </option>
+    <% }) %>
+  </select>
+
+  <label>Date/Time</label>
+  <input type="datetime-local"
+         name="date_time"
+         value="<%= new Date(entry.date_time).toISOString().slice(0,16) %>"
+         required>
+
+  <label>Visitors</label>
+  <input type="number"
+         name="visitors"
+         min="0"
+         value="<%=entry.visitors%>"
+         required>
+
+  <button class="btn">Save</button>
+  <% if(error){ %><p class="error"><%=error%></p><% } %>
+</form>
+<%- include('partials/footer') %>

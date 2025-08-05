@@ -1,0 +1,16 @@
+<%- include('partials/header',{title,user}) %>
+<h2>Results from <%= new Date(from).toLocaleString() %> to <%= new Date(to).toLocaleString() %></h2>
+<table>
+  <thead><tr><th>Location</th><th>Date/Time</th><th>Visitors</th></tr></thead>
+  <tbody>
+    <% rows.forEach(r=>{ %>
+      <tr>
+        <td><%= r.location %></td>
+        <td><%= new Date(r.date_time).toLocaleString() %></td>
+        <td><%= r.visitors %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<p><a href="/tourist/dashboard">← Back</a></p>
+<%- include('partials/footer') %>

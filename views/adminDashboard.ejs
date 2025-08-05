@@ -1,0 +1,52 @@
+<%- include('partials/header', { title, user }) %>
+
+<h2>Welcome, <%= user.username %></h2>
+<a href="/admin/add" class="btn">+ Add Entry</a>
+
+<div class="action‑bar">
+  <a href="/admin/users" class="btn secondary">👥 Manage Users</a>
+</div>
+
+<h3>Your Recent Entries</h3>
+<table>
+  <thead><tr><th>Location</th><th>Date/Time</th><th>Visitors</th><th>Actions</th></tr></thead>
+  <tbody>
+    <% entries.forEach(e => { %>
+      <tr>
+        <td><%= e.location %></td>
+        <td><%= new Date(e.date_time).toLocaleString() %></td>
+        <td><%= e.visitors %></td>
+        <td>
+          <a href="/admin/edit/<%= e.id %>">Edit</a>
+          <form action="/admin/delete" method="post" style="display:inline">
+            <input type="hidden" name="id" value="<%= e.id %>">
+            <button>Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h3>7‑Day Visitor Trend</h3>
+<canvas id="trendChart" width="600" height="300"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const trendData = <%- JSON.stringify(trendData) %>;
+  if (trendData.length) {
+    new Chart(document.getElementById('trendChart'), {
+      type: 'bar',
+      data: {
+        labels: trendData.map(r => r.location),
+        datasets:[{
+          label: 'Visitors',
+          data:  trendData.map(r => r.visitors)
+        }]
+      },
+      options: { scales:{ y:{ beginAtZero:true } } }
+    });
+  }
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,72 @@
+<%- include('partials/header',{ title, user }) %>
+
+<h2>City Planner Dashboard</h2>
+
+<form class="filter-form" method="GET" action="/planner/dashboard">
+  <label>Region:
+    <select name="region">
+      <option value="">All</option>
+      <% /* you might fetch a regions list instead */ %>
+      <option value="North" <%= filter.region==='North'?'selected':''%>>North</option>
+      <option value="South" <%= filter.region==='South'?'selected':''%>>South</option>
+      <option value="East"  <%= filter.region==='East'?'selected':''%>>East</option>
+      <option value="West"  <%= filter.region==='West'?'selected':''%>>West</option>
+    </select>
+  </label>
+  <label>From:
+    <input type="date" name="from" value="<%= filter.from %>">
+  </label>
+  <label>To:
+    <input type="date" name="to"   value="<%= filter.to %>">
+  </label>
+  <button type="submit">Apply</button>
+  <a href="/planner/dashboard.csv?<%= new URLSearchParams(filter).toString() %>">
+    Download CSV
+  </a>
+</form>
+
+<h3>1) Visitors by Region</h3>
+<table class="simple-table">
+  <thead><tr><th>Region</th><th>Total Visitors</th></tr></thead>
+  <tbody>
+    <% aggData.forEach(r=>{ %>
+      <tr>
+        <td><%= r.region %></td>
+        <td><%= r.total_visitors %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h3>2) Daily Trend</h3>
+<canvas id="trendChart" width="600" height="300"></canvas>
+
+<p><strong>7‑day average prediction for next day:</strong> <%= prediction %> visitors</p>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  (function(){
+    const days  = <%- JSON.stringify(timeSeries.map(r=>r.day)) %>;
+    const totals= <%- JSON.stringify(timeSeries.map(r=>r.total)) %>;
+
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {
+        labels: days,
+        datasets: [{
+          label: 'Daily Visitors',
+          data: totals,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero:true }
+        }
+      }
+    });
+  })();
+</script>
+
+<%- include('partials/footer') %>
