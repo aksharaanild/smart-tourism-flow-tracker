@@ -13,12 +13,12 @@
     <option value="nature">Nature</option>
     <option value="adventure">Adventure</option>
     <option value="food">Food</option>
-    <option value="Museum">Museum</option>
+    <option value="museum">Museum</option>
     <option value="relaxation">Relaxation</option>
     <option value="History">History</option>
     <option value="historical">Historical</option>
   </select>
-  <button type="submit" class="btn">Get Recommendations</button>
+  <button type="submit">Get Recommendations</button>
 </form>
 
 <% if (recommendations) { %>
@@ -33,9 +33,9 @@
         </li>
       <% }) %>
     </ul>
-  <% } else { %>
-    <p>No popular places found for that interest yet.</p>
-  <% } %>
+  <% } else if (!error) { %>
+  <p>No popular places found for that interest yet.</p>
+<% } %>
 <% } %>
 
 <p><a href="/tourist/dashboard">← Back to Dashboard</a></p>

@@ -19,7 +19,7 @@ cron.schedule('*/15 * * * *', () => {
     if (err) return console.error('🔥 Alert-cron DB error:', err);
     if (!rows.length) return;        // nothing to alert
 
-    const list = rows.map(r => `${r.name} (${r.visitors})`).join(', ');
+    const list = rows.map(r => `${r.name} (${r.visitors}) (${r.date_time})`).join(', ');
     const mailOptions = {
       from:    `"Tourism Alerts" <${process.env.EMAIL_USER}>`,
       to:      process.env.ALERT_EMAIL_RECIPIENTS,

@@ -28,7 +28,8 @@ router.get('/dashboard', (req, res, next) => {
 
   const sqlCrowd = `
     SELECT l.name AS location,
-           f.visitors
+           f.visitors  AS visitors,
+           f.date_time AS date_time
       FROM flow_data f
       JOIN locations l ON f.location_id = l.id
      WHERE f.visitors > ?
@@ -70,7 +71,7 @@ router.get('/dashboard', (req, res, next) => {
               subject: '🚨 Overcrowded Alert',
               text: `
 The following location(s) have exceeded ${THRESHOLD} visitors in the last 15 minutes:
-${overcrowded.map(r => `${r.location} (${r.visitors})`).join(', ')}
+${overcrowded.map(r => `${r.location} (${r.visitors} (${r.date_time})`).join(', ')}
               `
             };
             transporter.sendMail(mailOptions, (mailErr, info) => {
@@ -111,7 +112,8 @@ router.get(
     res.render('recommendations', {
       title:           'Your Recommendations',
       user:            req.session.user,
-      recommendations: null   // no data yet
+      recommendations: null,
+      error:           null   
     });
   }
 );
@@ -125,15 +127,15 @@ router.post(
   ensureLoggedIn, 
   ensureRole('tourist'),
   (req, res, next) => {
-    const interest = req.body.interest;
-    // Validate the interest against allowed categories
-    const allowed = ['nature','adventure','food','historical'];
-    if (!allowed.includes(interest)) {
+    let interest = (req.body.interest || '').trim().toLowerCase();
+    
+    // Validate the interest against allowed categories 
+    if (!(interest)) {
       return res.render('recommendations', {
         title:           'Your Recommendations',
         user:            req.session.user,
         recommendations: [],
-        error:           'Invalid interest selected'
+        error:           'Please select an interest'
       });
     }
 
@@ -148,21 +150,27 @@ router.post(
       FROM flow_data f
       JOIN locations l
         ON f.location_id = l.id
-      WHERE l.category = ?
-        AND f.date_time >= DATE_SUB(NOW(), INTERVAL 1 DAY)
-      GROUP BY l.id
+      WHERE LOWER(l.category) = LOWER(?) 
+        AND f.date_time >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+      GROUP BY l.id, l.name, l.region
       ORDER BY total_visitors DESC
       LIMIT 5
     `;
+    
+    console.log('Interest:', interest);
 
+    // interest is already lowercase, match it directly
     db.query(sql, [interest], (err, rows) => {
       if (err) return next(err);
+      console.log('got recs:', rows);
       res.render('recommendations', {
         title:           'Your Recommendations',
         user:            req.session.user,
         recommendations: rows,
         error:           null
       });
+      console.log('Query result rows:', rows);
+
     });
   }
 );
